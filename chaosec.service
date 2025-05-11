@@ -1,0 +1,14 @@
+[Unit]
+Description=Chaosec Traffic Obfuscation Service
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/local/bin/chaosec.py --dns-noise --http-flood --tcp-noise --udp-noise --pattern chaotic --intensity 2.0 --tor-mode --verbose
+Restart=on-failure
+RestartSec=5
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target 
